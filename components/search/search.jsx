@@ -5,6 +5,7 @@ import Card from "../card/card";
 import styles from "./search.module.scss";
 import Slider from "react-slick";
 import Head from "next/dist/shared/lib/head";
+import Loader from '../loader/loader';
 
 const FEED_SEARCH_QUERY = gql`
   query FeedSearchQuery($name: String!) {
@@ -25,11 +26,22 @@ const settings = {
   speed: 500,
   slidesToShow: 3,
   slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 480,
+      settings: {
+        dots: false,
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ]
 };
 
 const Search = () => {
   const [searchFilter, setSearchFilter] = useState("");
-  const [executeSearch, { data }] = useLazyQuery(FEED_SEARCH_QUERY);
+  const [executeSearch, { loading, error, data }] =
+    useLazyQuery(FEED_SEARCH_QUERY);
   return (
     <>
       <Head>
@@ -65,6 +77,8 @@ const Search = () => {
           <button className={styles.button}>Search</button>
         </form>
         <div className={styles.slider}>
+          {loading && <Loader/>}
+          {error && <div>Errror....{error.message}</div>}
           <Slider {...settings}>
             {data &&
               data.characters.results.map((item) => (

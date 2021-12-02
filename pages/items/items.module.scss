@@ -1,5 +1,25 @@
+@import "../../styles/colors.scss";
+
 .items {
+  margin-top: 4rem;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+.viewall {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: $color-primary;
+  padding: 5px;
+  border-radius: 10px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  justify-content: center;
+}
+.viewall a {
+  color: white;
+  text-decoration: none;
 }

@@ -1,6 +1,6 @@
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
-import Search from "../components/search/search";
+import Search from "../components/search/search.jsx";
 
 export default function Home() {
   return (
