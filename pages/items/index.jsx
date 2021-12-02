@@ -3,6 +3,7 @@ import styles from './items.module.scss'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Card from '../../components/card/card.jsx'
 import { useQuery, gql } from '@apollo/client';
+import Link from 'next/link'
 
 const FEED_QUERY = gql`
 {
@@ -25,9 +26,16 @@ export default function Items({
 ) {
     const { data } = useQuery(FEED_QUERY);
   return (
+    <>
+       <div className={styles.viewall}>
+        <Link href={`/`}>
+          <a>{'<-- Take Me Back..!'}</a>
+        </Link>
+      </div>
     <div className={styles.items}>
       {data && data.characters.results.map(((item)=><Card {...item} key={item.id}/>))}
     </div>
+    </>
   )
 }
 

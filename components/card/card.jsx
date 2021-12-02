@@ -5,7 +5,7 @@ export default function Card(
   ) {
   return (
     <div className={styles.card} style={{ backgroundImage: `url( ${props.image} )` }} key={props.id}>
-      {props.name}
+      <span>{props.name}</span>
     </div>
   );
 }
