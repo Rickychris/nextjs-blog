@@ -6,6 +6,7 @@ import {
   ApolloClient,
   createHttpLink,
   InMemoryCache,
+  split
 } from "@apollo/client";
 
 // 2
@@ -13,9 +14,19 @@ const httpLink = createHttpLink({
   uri: "https://rickandmortyapi.com/graphql",
 });
 
+const mutationLink = createHttpLink({
+  uri: 'https://graphqlzero.almansi.me/api',
+  // mutation link...
+});
+
 // 3
 const client = new ApolloClient({
-  link: httpLink,
+  // link: httpLink,
+  link: split(
+    operation => operation.getContext().clientName === "mutation",
+    mutationLink, // <= apollo will send to this if clientName is "mutation'
+    httpLink // <= otherwise will send to this
+  ),
   cache: new InMemoryCache(),
 });
 
