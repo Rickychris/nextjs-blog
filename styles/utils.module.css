@@ -74,3 +74,8 @@
   color: white;
   text-decoration: none;
 }
+.viewall.posts {
+  bottom: 20px;
+  top: auto;
+  width: 150px;
+}

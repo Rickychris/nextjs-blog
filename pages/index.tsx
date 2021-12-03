@@ -14,6 +14,11 @@ export default function Home() {
           <a>View All the Characters</a>
         </Link>
       </div>
+      <div className={`${utilStyles.viewall} ${utilStyles.posts}`}>
+        <Link href={`/posts`}>
+          <a>View Posts</a>
+        </Link>
+      </div>
     </div>
   );
 }
